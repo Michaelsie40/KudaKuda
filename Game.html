@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Horse Puzzle</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('https://i.postimg.cc/G3SkMK9Q/samuel-berner-A5-Gmt-HW3-O9k-unsplash.jpg') no-repeat center center/cover;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .game-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .decor-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,255,127,0.8);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .card {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            user-select: none;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0px 0px 10px rgba(0,255,127,0.8);
+        }
+        .card:hover {
+            transform: scale(1.1);
+        }
+        .hidden {
+            background: rgba(255, 255, 255, 0.1);
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1>Match the Horses in the Enchanted Forest to Unlock Special Prize! 🐴🌲✨</h1>
+    <div class="game-container">
+        <div class="grid" id="gameBoard"></div>   
+    </div>
+    <script>
+        const emojis = ['🐴', '🐴', '🦓', '🦓', '🐎', '🐎', '🦄', '🦄'];
+        let shuffled = emojis.sort(() => 0.5 - Math.random());
+        let selected = [];
+        let matchedPairs = 0;
+        
+        const gameBoard = document.getElementById("gameBoard");
+        shuffled.forEach((emoji, index) => {
+            let card = document.createElement("div");
+            card.classList.add("card", "hidden");
+            card.dataset.index = index;
+            card.dataset.emoji = emoji;
+            card.addEventListener("click", flipCard);
+            gameBoard.appendChild(card);
+        });
+        
+        function flipCard() {
+            if (selected.length < 2 && this.classList.contains("hidden")) {
+                this.classList.remove("hidden");
+                this.innerText = this.dataset.emoji;
+                selected.push(this);
+            }
+            if (selected.length === 2) {
+                setTimeout(checkMatch, 300);
+            }
+        }
+        
+        function checkMatch() {
+            if (selected.length === 2) {
+                if (selected[0].dataset.emoji === selected[1].dataset.emoji) {
+                    matchedPairs++;
+                    selected = [];
+                    if (matchedPairs === emojis.length / 2) {
+                        window.location.href = "Claim.html";
+                    }
+                } else {
+                    selected.forEach(card => {
+                        card.classList.add("hidden");
+                        card.innerText = "";
+                    });
+                    selected = [];
+                }
+            }
+        }
+    </script>
+</body>
+</html>
