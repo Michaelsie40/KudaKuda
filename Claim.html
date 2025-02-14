@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulation</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('https://i.postimg.cc/G3SkMK9Q/samuel-berner-A5-Gmt-HW3-O9k-unsplash.jpg') no-repeat center center/cover;
+            font-family: 'Courier New', Courier, monospace;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .game-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 700px;
+            flex-direction: column;
+        }
+        .prize-message {
+            font-size: 24px;
+            margin-top: 20px;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .decor-image img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 15px;
+        }
+        button {
+            background-color: #7E4B3C;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0px 0px 15px rgba(0,255,127,0.8);
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #a36b4e;
+        }
+    </style>
+</head>
+<body>
+    <h1>You've Earned a Special Prize! 🏆</h1>
+    <div class="game-container">
+        <div class="prize-message">
+            <div class="decor-image">
+                <img src="https://i.postimg.cc/LhKnkXRZ/kudaaaaa.jpg" alt="Horse Prize">
+            </div>
+            <p>Congratulations on unlocking a special love letter! 🐎✨</p>
+        </div>
+        <!-- Button to claim prize and navigate to another page -->
+        <a href="Loveletter.html">
+            <button id="claimButton">Claim Your Prize</button>
+        </a>
+    </div>
+</body>
+</html>
